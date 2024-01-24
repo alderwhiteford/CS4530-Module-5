@@ -2,10 +2,10 @@ import WeatherData, { WeatherDataObserver } from './WeatherData';
 
 export default class HeatIndexDisplay implements WeatherDataObserver{
   update(currentConditions: WeatherData): void {
-    HeatIndexDisplay.displayHeatIndex(currentConditions);
+    this.displayData(currentConditions);
   }
 
-  static displayHeatIndex(currentData: WeatherData): void {
+  displayData(currentData: WeatherData): void {
     const {humidity, temperature} = currentData;
     const heatIndex = (
       (16.923 + (0.185212 * temperature)) +

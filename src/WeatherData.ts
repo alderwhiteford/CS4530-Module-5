@@ -5,6 +5,7 @@ import HeatIndexDisplay from './HeatIndexDisplay';
 
 export interface WeatherDataObserver {
   update(currentConditions: WeatherData): void
+  displayData(currentData: WeatherData): void
 }
 
 export default class WeatherData {
@@ -28,10 +29,6 @@ export default class WeatherData {
     return this._pressure;
   }
 
-  private _statisticsDisplay = new StatisticsDisplay();
-
-  private _forecastDisplay = new ForecastDisplay();
-
   public setMeasurements(temperature: number, humidity: number, pressure: number): void {
     this._temperature = temperature;
     this._humidity = humidity;
@@ -40,10 +37,9 @@ export default class WeatherData {
   }
 
   private measurementsChanged() {
-    this._statisticsDisplay.displayStatistics(this);
-    this._forecastDisplay.displayForecast(this);
-    CurrentConditionsDisplay.displayCurrentConditions(this);
-    HeatIndexDisplay.displayHeatIndex(this);
+    this._observers.forEach((observer) => {
+      observer.update(this)
+    })
   }
 
   public register(observer: WeatherDataObserver): void {

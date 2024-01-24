@@ -1,0 +1,15 @@
+Question 6:
+Compare the output of your new program to the output you got by running the original version. 
+Are the lines printed in the same order? Why or why not?
+
+The output of the program is different because we are now calling the observer display functions in
+a different order than they originally were initialized.
+
+Question 7:
+Can you modify the code so that the various XXXDisplay classes are all implementations of the same
+interface? Why might or might not this be a good idea?
+
+Yes, we can do this by making the methods of the HeatIndex and CurrentConditions Display non-static and moving
+the display functions to the interface. This is a good idea because it will force all subsequent observers to
+inherit the method and provide their own implementation of the function. Additionally, we can probably assume that we only
+want the display methods called if we have explicity created an instance of their respective class.

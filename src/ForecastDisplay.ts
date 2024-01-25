@@ -6,10 +6,10 @@ export default class ForecastDisplay implements WeatherDataObserver {
   private _lastPressure = 0;
 
   update(currentConditions: WeatherData) {
-    this.displayForecast(currentConditions)
+    this.displayData(currentConditions)
   }
 
-  displayForecast(weatherData: WeatherData): void {
+  displayData(weatherData: WeatherData): void {
     this._lastPressure = this._currentPressure;
     this._currentPressure = weatherData.pressure;
     let forecast;

@@ -10,10 +10,10 @@ export default class StatisticsDisplay implements WeatherDataObserver {
   private _numReadings = 0;
 
   public update(currentConditions: WeatherData) {
-    this.displayStatistics(currentConditions);
+    this.displayData(currentConditions);
   }
 
-  displayStatistics(currentData: WeatherData): void {
+  displayData(currentData: WeatherData): void {
     this._tempSum += currentData.temperature;
     this._numReadings += 1;
     if (this._maxTemp < currentData.temperature) {
